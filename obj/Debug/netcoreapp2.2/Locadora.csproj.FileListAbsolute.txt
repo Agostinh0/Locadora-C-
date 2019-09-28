@@ -1,0 +1,11 @@
+C:\Users\mth_c\source\repos\Locadora\bin\Debug\netcoreapp2.2\Locadora.deps.json
+C:\Users\mth_c\source\repos\Locadora\bin\Debug\netcoreapp2.2\Locadora.runtimeconfig.json
+C:\Users\mth_c\source\repos\Locadora\bin\Debug\netcoreapp2.2\Locadora.runtimeconfig.dev.json
+C:\Users\mth_c\source\repos\Locadora\bin\Debug\netcoreapp2.2\Locadora.dll
+C:\Users\mth_c\source\repos\Locadora\bin\Debug\netcoreapp2.2\Locadora.pdb
+C:\Users\mth_c\source\repos\Locadora\obj\Debug\netcoreapp2.2\Locadora.csprojAssemblyReference.cache
+C:\Users\mth_c\source\repos\Locadora\obj\Debug\netcoreapp2.2\Locadora.csproj.CoreCompileInputs.cache
+C:\Users\mth_c\source\repos\Locadora\obj\Debug\netcoreapp2.2\Locadora.AssemblyInfoInputs.cache
+C:\Users\mth_c\source\repos\Locadora\obj\Debug\netcoreapp2.2\Locadora.AssemblyInfo.cs
+C:\Users\mth_c\source\repos\Locadora\obj\Debug\netcoreapp2.2\Locadora.dll
+C:\Users\mth_c\source\repos\Locadora\obj\Debug\netcoreapp2.2\Locadora.pdb
