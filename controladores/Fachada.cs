@@ -39,8 +39,8 @@ namespace Locadora.controladores
             return controladorCliente.Pesquisar(cpf);
         }
 
-        public void RemoverCliente(Cliente cliente) {
-            this.controladorCliente.Remover(cliente);
+        public Boolean RemoverCliente(Cliente cliente) {
+            return controladorCliente.Remover(cliente);
         }
 
         public void EditarCliente(Cliente cliente, string nome, Endereco endereco, Boolean premium) {
@@ -58,12 +58,13 @@ namespace Locadora.controladores
             return controladorFilme.Listar();
         }
 
-        public Filme BuscarFilme(int id) {
-            return controladorFilme.Buscar(id);
+        public Filme BuscarFilme(string titulo) {
+            return controladorFilme.Buscar(titulo);
         }
         public void RemoverFilme(Filme filme)
         {
-            this.controladorFilme.Remover(filme);
+             controladorFilme.Remover(filme);
+            
         }
 
         public void EditarFilme(Filme filme, string nome, string diretor, DateTime lancamento, double preco,

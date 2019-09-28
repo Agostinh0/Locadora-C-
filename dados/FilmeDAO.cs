@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Locadora.controladores.models;
-
+using System.Linq;
 namespace Locadora.dados
 {
     class FilmeDAO
@@ -43,12 +43,12 @@ namespace Locadora.dados
         }
 
         //Método buscar
-        public Filme Buscar(int id)
+        public Filme Buscar(string titulo)
         {
 
             foreach (Filme filme in filmes)
             {
-                if (filme.Id == id)
+                if (filme.Nome == titulo)
                 {
                     return filme;
                 }
@@ -71,11 +71,9 @@ namespace Locadora.dados
         public void Remover(Filme filme)
         {
 
-            foreach (Filme f in filmes)
-            {
-                if (f.Id == filme.Id)
-                {
-                    this.filmes.Remove(f);
+            for (int i = 0; i < filmes.Count; i++) {
+                if (filmes.ElementAt(i).Nome.Equals(filme.Nome)) { 
+                    filmes.RemoveAt(i);
                 }
             }
         }

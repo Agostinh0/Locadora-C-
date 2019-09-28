@@ -14,7 +14,7 @@ namespace Locadora
 
             Console.WriteLine("(1) Adicionar cliente\n(2) Buscar cliente\n(3) Editar cliente\n(4) Remover cliente");
             Console.WriteLine("(5) Adicionar filme\n(6) Buscar filme\n(7) Editar filme\n(8) Remover filme");
-            Console.WriteLine("(9) Registrar aluguel\n(10) Registrar devolução\n");
+            Console.WriteLine("(9) Registrar aluguel\n(10) Registrar devolução\n(11) Sair");
 
             Console.WriteLine("Escolha uma operação:");
             int operacao = int.Parse(Console.ReadLine());
@@ -212,9 +212,15 @@ namespace Locadora
                         
                             if (confirmacao == 1)
                             {
-                                Fachada.Instance.RemoverCliente(client);
-                                Console.WriteLine("Cliente removido com sucesso!");
-                                Console.ReadLine();
+                                if (Fachada.Instance.RemoverCliente(client))
+                                {
+                                    Console.WriteLine("Cliente removido com sucesso!");
+                                    Console.ReadLine();
+                                }
+                                else {
+                                    Console.WriteLine("Não foi possível remover o cliente.\nVerifique se ele possui filmes alugados");
+                                    Console.ReadLine();
+                                }
                             }
                             else if (confirmacao == 2)
                             {
@@ -229,12 +235,214 @@ namespace Locadora
                         Menu();
 
                         break;
-                    case 5: break;
-                    case 6: break;
-                    case 7: break;
-                    case 8: break;
-                    case 9: break;
-                    case 10: break;
+                    case 5:
+
+                        Console.Clear();
+
+
+                        Console.WriteLine("Insira o título do filme: ");
+                        string titulo = Console.ReadLine();
+
+                        Console.WriteLine("Insira o diretor do filme: ");
+                        string diretor = Console.ReadLine();
+
+                        Console.WriteLine("Dia de lançamento: ");
+                        int dia = Convert.ToInt32(Console.ReadLine());
+
+                        Console.WriteLine("Mês de lançamento (número): ");
+                        int mes = Convert.ToInt32(Console.ReadLine());
+
+                        Console.WriteLine("Ano de lançamento: ");
+                        int ano = Convert.ToInt32(Console.ReadLine());
+
+                        DateTime dataLancamento = new DateTime(ano, mes, dia);                       
+
+                        Console.WriteLine("Preço: ");
+                        double preco = Convert.ToDouble(Console.ReadLine());
+
+                        Console.WriteLine("Gênero (Exemplos: Ação, Aventura, Drama, etc): ");
+                        string genero = Console.ReadLine();
+
+                        Console.WriteLine("Sinopse: ");
+                        string sinopse = Console.ReadLine();
+
+                        Filme filme = new Filme(titulo, diretor, dataLancamento, preco, genero, sinopse);
+                        Fachada.Instance.SalvarFilme(filme);
+
+                        Console.Clear();
+                        Console.WriteLine("Filme adicionado com sucesso!");
+                        Console.WriteLine(filme.ToString());
+
+                        Console.ReadLine();
+
+                        Menu();
+
+                        break;
+                    case 6:
+
+                        Console.Clear();
+
+                        Console.WriteLine("Insira o título do filme: ");
+                        string buscaFilme = Console.ReadLine();
+
+                        Console.Clear();
+                        Console.WriteLine(Fachada.Instance.BuscarFilme(buscaFilme));
+
+                        Console.ReadLine();
+
+                        Menu();
+
+                        break;
+                    case 7:
+
+                        Console.Clear();
+
+                        Console.WriteLine("Insira o título do filme: ");
+                        string filmSearch = Console.ReadLine();
+
+                        Console.Clear();
+                        Filme f = Fachada.Instance.BuscarFilme(filmSearch);
+                        Console.WriteLine(f.ToString());
+
+                        Console.WriteLine("Insira o novo título do filme: ");
+                        string novoTitulo = Console.ReadLine();
+
+                        Console.WriteLine("Insira o novo diretor do filme: ");
+                        string novoDiretor = Console.ReadLine();
+
+                        Console.WriteLine("Novo dia de lançamento: ");
+                        int novoDia = Convert.ToInt32(Console.ReadLine());
+
+                        Console.WriteLine("Novo mês de lançamento (número): ");
+                        int novoMes = Convert.ToInt32(Console.ReadLine());
+
+                        Console.WriteLine("Novo ano de lançamento: ");
+                        int novoAno = Convert.ToInt32(Console.ReadLine());
+
+                        DateTime novaDataLancamento = new DateTime(novoAno, novoMes, novoDia);
+
+                        Console.WriteLine("Novo preço: ");
+                        double novoPreco = Convert.ToDouble(Console.ReadLine());
+
+                        Console.WriteLine("Novo gênero (Exemplos: Ação, Aventura, Drama, etc): ");
+                        string novoGenero = Console.ReadLine();
+
+                        Console.WriteLine("Nova sinopse: ");
+                        string novaSinopse = Console.ReadLine();
+
+                        Fachada.Instance.EditarFilme(f, novoTitulo, novoDiretor, novaDataLancamento, 
+                            novoPreco, novoGenero, novaSinopse);
+
+                        Console.Clear();
+
+                        Console.WriteLine("Filme atualizado com sucesso!");
+                        Console.WriteLine(f.ToString());
+                        Console.ReadLine();
+
+                        Menu();
+
+                        break;
+                    case 8:
+
+                        Console.Clear();
+
+                        Console.WriteLine("Insira o título do filme: ");
+                        string movieSearch = Console.ReadLine();
+
+                        Console.Clear();
+                        Filme movie = Fachada.Instance.BuscarFilme(movieSearch);
+                        Console.WriteLine(movie.ToString());
+
+                        int confirm = 0;
+
+                        while (confirm != 1 && confirm != 2)
+                        {
+                            Console.WriteLine("Deseja remover o filme? 1 para SIM, 2 para NÃO");
+                            confirm = Convert.ToInt32(Console.ReadLine());
+
+
+                            if (confirm == 1)
+                            {
+                                Fachada.Instance.RemoverFilme(movie);
+                                Console.WriteLine("Filme removido com sucesso!");
+                                Console.ReadLine();
+                            }
+                            else if (confirm == 2)
+                            {
+                                Console.WriteLine("Operação cancelada.");
+                                Console.ReadLine();
+                            }
+                            else
+                            {
+                                Console.WriteLine("Opção inválida!");
+                            }
+                        }
+
+                        Menu();
+
+                        break;
+                    case 9:
+
+                        Console.Clear();
+
+                        Console.WriteLine("Insira o título do filme: ");
+                        string buscaFilmeAluguel = Console.ReadLine();
+
+                        Filme film = Fachada.Instance.BuscarFilme(buscaFilmeAluguel);
+                        Console.WriteLine(film.ToString());
+
+                        Console.WriteLine("---------------------\nInsira o CPF do cliente: ");
+                        string clienteCpf = Console.ReadLine();
+
+                        Cliente fregues = Fachada.Instance.BuscarCliente(clienteCpf);
+                        Console.WriteLine(fregues.ToString());
+
+                        Console.WriteLine("---------------------\nPor quantos dias irá alugar?");
+                        int dias = Convert.ToInt32(Console.ReadLine());
+
+                        Console.WriteLine("Qual a forma de pagamento?");
+                        string formaPagamento = Console.ReadLine();
+
+                        fregues.Alugar(fregues, film);
+                        NotaFiscal nf = new NotaFiscal(fregues, film, dias, formaPagamento);
+
+                        Console.Clear();
+                        Console.WriteLine("Alugado!");
+                        Console.WriteLine(nf.ToString());
+
+                        Console.ReadLine();
+
+                        Menu();
+
+                        break;
+                    case 10:
+
+                        Console.Clear();
+
+                        Console.WriteLine("Insira o CPF do cliente: ");
+                        string clientCpf = Console.ReadLine();
+
+                        Cliente cli = Fachada.Instance.BuscarCliente(clientCpf);
+                        Console.WriteLine(cli.ToString());
+
+                        Console.WriteLine("---------------------\nInsira o nome do filme a ser devolvido");
+                        string p = Console.ReadLine();
+
+                        Filme fl = Fachada.Instance.BuscarFilme(p);
+                        Console.WriteLine(fl.ToString());
+
+                        cli.Devolver(cli, fl);
+
+                        Console.WriteLine("Devolvido!");
+
+                        Console.ReadLine();
+
+                        Menu();
+
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Obrigado por usar o nosso sistema!"); break;
                 }
 
             } while (operacao != 11);

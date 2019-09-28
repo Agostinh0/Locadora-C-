@@ -65,14 +65,16 @@ namespace Locadora.controladores
             return this.clienteDAO.Listar();
         }
 
-        public void Remover(Cliente cliente) {
+        public Boolean Remover(Cliente cliente) {
             if (cliente == null)
             {
-                throw new ArgumentNullException();
+                return false;
             }
             else {
                 this.clienteDAO.Remover(cliente);
+                return true;
             }
+
         }
 
         public void Editar(Cliente cliente, string nome, Endereco endereco, Boolean premium) {

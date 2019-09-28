@@ -29,6 +29,7 @@ namespace Locadora.controladores.models
             texto += "\nCPF: " + this.Cpf;
             texto += "\nEndereço: " + this.Endereco.ToString();
             texto += "\nPremium: " + this.Premium;
+            texto += "\nFilmes alugados: " + this.Filmes.Count;
             return texto;
         }
 
@@ -42,6 +43,16 @@ namespace Locadora.controladores.models
             }
             else {
                 Console.WriteLine("Filme já alugado");
+            }
+        }
+
+        public void Devolver(Cliente cliente, Filme filme) {
+            if (this.Filmes.Contains(filme))
+            {
+                this.Filmes.Remove(filme);
+            }
+            else {
+                Console.WriteLine("Filme não consta");
             }
         }
 

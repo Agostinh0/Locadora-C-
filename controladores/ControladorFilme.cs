@@ -45,12 +45,12 @@ namespace Locadora.controladores
             }
         }
 
-        public Filme Buscar(int id) {
-            if (id == 0) {
+        public Filme Buscar(string titulo) {
+            if (titulo.Equals("")) {
                 throw new ArgumentNullException();
             }
             else {
-                return this.filmeDAO.Buscar(id);
+                return this.filmeDAO.Buscar(titulo);
             }
         }
            

@@ -56,15 +56,28 @@ namespace Locadora.dados
         }
 
         //Método remover 
-        public void Remover(Cliente cliente) {
+        public Boolean Remover(Cliente cliente) {
 
             for (int i = 0; i < clientes.Count; i++) {
-                if (clientes.Contains(cliente)) {
-                    if (clientes.ElementAt(i).Filmes.Count == 0) {
+                if (clientes.Contains(cliente))
+                {
+                    if (clientes.ElementAt(i).Filmes.Count == 0)
+                    {
                         this.clientes.RemoveAt(i);
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
                     }
                 }
+                else {
+                    return false;
+                }
             }
+
+            return false;
+
         }
 
         //Método editar
